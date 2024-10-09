@@ -9,6 +9,5 @@ Future<Map?> getTournaments() async {
   if(response.statusCode == 200) {
     return json.decode(response.body);
   }
-
   return null;
 }
