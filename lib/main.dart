@@ -25,8 +25,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
-
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
   final String title;
@@ -36,7 +34,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   bool isScrollable = false;
   bool showNextIcon = true;
   bool showBackIcon = true;
@@ -60,9 +57,11 @@ class _MyHomePageState extends State<MyHomePage> {
       title: const Tab(
         child: Text('Tab 1'),
       ),
-      content: const Center(child: Tab(
-        child: Text('Tab 1'),
-      ),),
+      content: const Center(
+        child: Tab(
+          child: Text('Tab 1'),
+        ),
+      ),
     )
   ];
 
@@ -192,15 +191,12 @@ class _MyHomePageState extends State<MyHomePage> {
     final tournamentsService = TournamentsService();
     final List? tournaments = await tournamentsService.getTournaments();
 
-    print("Tournaments");
-    print(tournaments);
-
     for (var tournament in tournaments!) {
-      addTab(tournament["tournament_name"], tournament["event_type_type"]);
+      addTab(tabName: tournament["tournament_name"], content:  tournament["event_type_type"]);
     }
   }
 
-  void addTab(String tabName, String content) {
+  void addTab({required String tabName, required String content}) {
     setState(() {
       var tabNumber = tabs.length + 1;
       tabs.add(
