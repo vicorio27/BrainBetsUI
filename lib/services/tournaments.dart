@@ -1,13 +1,9 @@
-import 'dart:convert';
-import 'package:http/http.dart';
-import 'package:brain_bets/constant.dart' as constant;
+import 'package:brain_bets/api/tournaments.dart';
 
-Future<Map?> getTournaments() async {
-  var client = Client();
-  var uri = Uri.parse(constant.urlService + constant.uriTournaments);
-  Response response = await client.get(uri);
-  if(response.statusCode == 200) {
-    return json.decode(response.body);
+class TournamentsService {
+  Future<List?> getTournaments() async {
+    var api = TournamentsAPI();
+    List? tournaments = await api.getTournaments();
+    return tournaments;
   }
-  return null;
 }
